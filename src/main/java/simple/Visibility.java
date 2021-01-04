@@ -1,7 +1,7 @@
 package simple;
 
 public class Visibility {
-  private static boolean stop = false;
+  private static volatile boolean stop = false; // creates "happens-before"
 
   public static void main(String[] args) throws Throwable {
     new Thread(() -> {

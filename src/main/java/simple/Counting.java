@@ -1,12 +1,16 @@
 package simple;
 
 public class Counting {
-  private static long count = 0;
+  private /*volatile*/ static long count = 0; // volatile does NOT create transaction behavior
+  private static Object syncObj = new Object();
 
   public static void main(String[] args) throws Throwable {
     Runnable counter = () -> {
       for (int i = 0; i < 10_000; i++) {
-        count++;
+//        synchronized(Counting.class) {
+        synchronized(syncObj) { // happens before created by monitor release / acquisition
+          count++;
+        }
       }
     };
 //    counter.run();
