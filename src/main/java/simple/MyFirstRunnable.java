@@ -1,11 +1,12 @@
 package simple;
 
 class SimpleRunnable implements Runnable {
+  private int i = 0;
   @Override
   public void run() {
     System.out.println(Thread.currentThread().getName()
     + " starting...");
-    for (int i = 0; i < 10_000; i++) {
+    for (; i < 10_000; i++) {
       System.out.println(Thread.currentThread().getName()
        + " i is " + i);
     }
